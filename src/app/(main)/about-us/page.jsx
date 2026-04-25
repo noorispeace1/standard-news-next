@@ -12,7 +12,7 @@ const AboutUsPage = async () => {
 
     return (
         <div className="bg-[#F9FAFB] min-h-screen py-12">
-            <div className="container mx-auto px-4 lg:px-8">
+            <div className="w-11/12  mx-auto px-4 lg:px-8">
                 <div className="grid grid-cols-12 gap-10">
                     
                     {/* Left Sidebar (3 Columns) */}
@@ -133,7 +133,7 @@ const AboutUsPage = async () => {
 
                         </div>
                     </main>
-                     <div className=" col-span-3 relative overflow-hidden p-8 bg-gray-900 rounded-[2rem]  justify-end text-white shadow-2xl">
+                     <div className=" col-span-3 relative overflow-hidden mr-20 p-8 bg-gray-900 rounded-[2rem]  justify-end text-white shadow-2xl">
                                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-50"></div>
                                 <h4 className="relative z-10 font-black text-2xl mb-4 leading-tight">Be Part of the <span className="text-red-500">Truth.</span></h4>
                                 <p className="relative z-10 text-sm text-gray-400 mb-6 font-medium">Join 50k+ readers who get exclusive investigative reports.</p>
