@@ -7,30 +7,29 @@ export const metadata = {
   title: "Standard News- About Us",
   description: "Standard News: The most trusted news portal in Bangladesh. Get real-time updates on politics, economy, sports, technology, and breaking news from across the globe.",
 };
+
 const AboutUsPage = async () => {
     const categories = await getCategories();
 
     return (
-        <div className="bg-[#F9FAFB] min-h-screen py-12">
-            {/* <div className="mx-auto px-4 lg:px-8"> */}
-                <div className="grid   grid-cols-12 gap-20">
+        <div className="bg-[#F9FAFB] min-h-screen py-6 md:py-12">
+            <div className="container mx-auto px-4 lg:px-8">
+                {/* Mobile-e grid 1 column hobe, desktop-e 12 column */}
+                <div className="grid grid-cols-12 gap-8 lg:gap-20">
                     
-                    {/* Left Sidebar (3 Columns) */}
-                    <aside className="col-span-3 ">
-                        <div className="sticky top-10 space-y-8">
+                    {/* Left Sidebar: Mobile-e niche jabe (order-2), Desktop-e bame (lg:order-1) */}
+                    <aside className="col-span-12 lg:col-span-3 order-2 lg:order-1">
+                        <div className="lg:sticky lg:top-10 space-y-8">
                             <LeftSidebar categories={categories} />
-                            
-                            {/* Pro-Level Sidebar Widget */}
-                           
                         </div>
                     </aside>
 
-                    {/* About Us Content (9 Columns) */}
-                    <main className="col-span-6 ">
-                        <div className="bg-white rounded-[3rem] border border-gray-100 p-6 md:p-16 shadow-2xl shadow-gray-200/50">
+                    {/* Main Content: Mobile-e upore thakbe (order-1), Desktop-e col-span-6 hobe */}
+                    <main className="col-span-12 lg:col-span-6 order-1 lg:order-2">
+                        <div className="bg-white rounded-[2rem] md:rounded-[3rem] border border-gray-100 p-6 md:p-16 shadow-2xl shadow-gray-200/50">
                             
                             {/* --- Section 1: Hero --- */}
-                            <div className="max-w-3xl mb-20">
+                            <div className="max-w-3xl mb-12 md:mb-20">
                                 <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-1.5 rounded-full mb-6">
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -38,16 +37,16 @@ const AboutUsPage = async () => {
                                     </span>
                                     <span className="text-[11px] font-black uppercase tracking-widest">Our Legacy</span>
                                 </div>
-                                <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-8 tracking-tighter">
+                                <h1 className="text-4xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-6 md:mb-8 tracking-tighter">
                                     We tell stories that <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">matter.</span>
                                 </h1>
-                                <p className="text-xl text-gray-500 leading-relaxed font-medium">
-                                    Dragon News isnot just a news portal; its a commitment to journalism that holds power accountable and gives voice to the unheard.
+                                <p className="text-lg md:text-xl text-gray-500 leading-relaxed font-medium">
+                                    Dragon News is not just a news portal; its a commitment to journalism that holds power accountable and gives voice to the unheard.
                                 </p>
                             </div>
 
                             {/* --- Section 2: Banner with Stats --- */}
-                            <div className="relative w-full h-[500px] rounded-[2.5rem] overflow-hidden mb-20 group">
+                            <div className="relative w-full h-[300px] md:h-[500px] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden mb-12 md:mb-20 group">
                                 <Image 
                                     src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2070" 
                                     alt="Newsroom" 
@@ -56,8 +55,7 @@ const AboutUsPage = async () => {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                                 
-                                {/* Overlay Stats */}
-                                <div className="absolute bottom-0 w-full p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+                                <div className="absolute bottom-0 w-full p-6 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                                     {[
                                         { label: "Active Readers", val: "2.5M+" },
                                         { label: "Global Offices", val: "14" },
@@ -65,36 +63,36 @@ const AboutUsPage = async () => {
                                         { label: "Journalists", val: "300+" },
                                     ].map((stat, i) => (
                                         <div key={i} className="text-white">
-                                            <h4 className="text-3xl font-black mb-1 tracking-tighter">{stat.val}</h4>
-                                            <p className="text-[10px] uppercase font-bold tracking-widest text-gray-400">{stat.label}</p>
+                                            <h4 className="text-xl md:text-3xl font-black mb-1 tracking-tighter">{stat.val}</h4>
+                                            <p className="text-[8px] md:text-[10px] uppercase font-bold tracking-widest text-gray-400">{stat.label}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            {/* --- Section 3: Core Values (The 3-Grid) --- */}
+                            {/* --- Section 3: Core Values --- */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                                <div className="p-10 rounded-[2rem] bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
-                                    <FaHistory className="text-4xl text-red-600 mb-6" />
+                                <div className="p-8 md:p-10 rounded-[2rem] bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
+                                    <FaHistory className="text-3xl md:text-4xl text-red-600 mb-6" />
                                     <h3 className="font-black text-xl mb-4">Integrity</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">Two decades of unfiltered reporting that people trust across the globe.</p>
                                 </div>
-                                <div className="p-10 rounded-[2rem] bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
-                                    <FaGlobe className="text-4xl text-orange-500 mb-6" />
+                                <div className="p-8 md:p-10 rounded-[2rem] bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
+                                    <FaGlobe className="text-3xl md:text-4xl text-orange-500 mb-6" />
                                     <h3 className="font-black text-xl mb-4">Global Reach</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">From local corners to global summits, we are present where news happens.</p>
                                 </div>
-                                <div className="p-10 rounded-[2rem] bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
-                                    <FaAward className="text-4xl text-blue-600 mb-6" />
+                                <div className="p-8 md:p-10 rounded-[2rem] bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300">
+                                    <FaAward className="text-3xl md:text-4xl text-blue-600 mb-6" />
                                     <h3 className="font-black text-xl mb-4">Excellence</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">Recognized by the International Press for investigative journalism.</p>
                                 </div>
                             </div>
 
                             {/* --- Section 4: Editorial Content --- */}
-                            <div className="grid grid-cols-3 md:grid-cols-2 gap-10 items-center">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                                 <div className="prose prose-lg">
-                                    <h2 className="text-4xl font-black text-gray-900 mb-8 leading-tight">Journalism for the <br/> Digital Age.</h2>
+                                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 md:mb-8 leading-tight">Journalism for the <br className="hidden md:block"/> Digital Age.</h2>
                                     <p className="text-gray-600 mb-6 font-medium">
                                         We utilize AI-driven analytics to understand what matters to our audience, without ever compromising on the human touch that defines real reporting.
                                     </p>
@@ -107,7 +105,7 @@ const AboutUsPage = async () => {
                                         ))}
                                     </ul>
                                 </div>
-                                <div className="relative h-[400px] bg-gray-100 rounded-[2.5rem] overflow-hidden border-8 border-white shadow-2xl">
+                                <div className="relative h-[300px] md:h-[400px] bg-gray-100 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border-4 md:border-8 border-white shadow-2xl">
                                     <Image 
                                         src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070" 
                                         alt="Team working" 
@@ -118,31 +116,33 @@ const AboutUsPage = async () => {
                             </div>
 
                             {/* --- Section 5: The Extreme CTA --- */}
-                            <div className="mt-24 relative p-12 md:p-20 bg-red-600 rounded-[3.5rem] overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
-                                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+                            <div className="mt-16 md:mt-24 relative p-8 md:p-20 bg-red-600 rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden group">
+                                <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-white/10 rounded-full -mr-24 -mt-24 md:-mr-48 md:-mt-48 blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
+                                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10">
                                     <div className="text-center md:text-left">
-                                        <h3 className="text-4xl md:text-5xl font-black text-white mb-4">Want to Join Us?</h3>
+                                        <h3 className="text-3xl md:text-5xl font-black text-white mb-4">Want to Join Us?</h3>
                                         <p className="text-red-100 font-medium max-w-md">We are always looking for fearless journalists and creative storytellers.</p>
                                     </div>
-                                    <button className="bg-white text-red-600 px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-900 hover:text-white transition-all shadow-2xl">
+                                    <button className="w-full md:w-auto bg-white text-red-600 px-10 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-900 hover:text-white transition-all shadow-2xl">
                                         Apply Now
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                     </main>
-                     <div className="col-span-2  h-92 relative overflow-hidden  p-8 bg-gray-900 rounded-[2rem]  justify-end text-white shadow-2xl">
-                                <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-50"></div>
-                                <h4 className="relative z-10 font-black text-2xl mb-4 leading-tight">Be Part of the <span className="text-red-500">Truth.</span></h4>
-                                <p className="relative z-10 text-sm text-gray-400 mb-6 font-medium">Join 50k+ readers who get exclusive investigative reports.</p>
-                                <button className="relative z-10 w-full bg-red-600 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
-                                    Subscribe
-                                </button>
-                            </div>
+
+                    {/* Right Widget: Mobile-e full width hobe sidebar er niche */}
+                    <div className="col-span-12 lg:col-span-3 xl:col-span-2 h-fit order-3 relative overflow-hidden p-8 bg-gray-900 rounded-[2rem] text-white shadow-2xl">
+                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-50"></div>
+                        <h4 className="relative z-10 font-black text-2xl mb-4 leading-tight">Be Part of the <span className="text-red-500">Truth.</span></h4>
+                        <p className="relative z-10 text-sm text-gray-400 mb-6 font-medium">Join 50k+ readers who get exclusive investigative reports.</p>
+                        <button className="relative z-10 w-full bg-red-600 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                            Subscribe
+                        </button>
+                    </div>
+
                 </div>
-            {/* </div> */}
+            </div>
         </div>
     );
 };

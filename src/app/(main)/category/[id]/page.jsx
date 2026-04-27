@@ -3,6 +3,7 @@ import RightSidebar from '@/components/homepage/news/RightSidebar';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+
 async function getCategories() {
     const res = await fetch("https://openapi.programming-hero.com/api/news/categories");
     const data = await res.json();
@@ -14,23 +15,31 @@ async function getNewsByCategoryId(category_id) {
     const data = await res.json();
     return data.data; 
 }
+
 const NewsCategoryPage = async({params}) => {
     const {id} = await params;
     const categories = await getCategories("01");
     const news = await getNewsByCategoryId(id);
-console.log(news);
+
     return (
        <div className="bg-[#F8F9FA] min-h-screen">
-            <div className="grid grid-cols-12 gap-8 my-[40px] container mx-auto px-4">
+            {/* Grid layout responsive kora hoyeche: 
+                Mobile: 1 column
+                Desktop (lg): 12 column gap-8 thakbe */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 my-6 lg:my-[40px] container mx-auto px-4">
                 
-                {/* Left Sidebar */}
-                <div className="col-span-3">
+                {/* Left Sidebar: 
+                    Mobile-e order-2 (Content er niche)
+                    Desktop-e col-span-3 thakbe */}
+                <div className="col-span-1 lg:col-span-3 order-2 lg:order-1">
                     <LeftSidebar categories={categories} activeId={null}></LeftSidebar>
                 </div>
 
-                {/* Middle Content: News Feed */}
-                <div className="col-span-6">
-                    <h2 className="font-bold text-2xl text-gray-800 mb-6 border-l-4 border-primary pl-3">
+                {/* Middle Content: News Feed
+                    Mobile-e order-1 (Sobar agey thakbe)
+                    Desktop-e col-span-6 thakbe */}
+                <div className="col-span-1 lg:col-span-6 order-1 lg:order-2">
+                    <h2 className="font-bold text-xl lg:text-2xl text-gray-800 mb-6 border-l-4 border-red-500 pl-3">
                       Standard News Home
                     </h2>
                     
@@ -57,11 +66,12 @@ console.log(news);
                                 </div>
 
                                 {/* Content Section */}
-                                <div className="p-5">
-                                    <h3 className="font-extrabold text-xl text-gray-900 mb-4 leading-relaxed">
+                                <div className="p-4 lg:p-5">
+                                    <h3 className="font-extrabold text-lg lg:text-xl text-gray-900 mb-4 leading-relaxed">
                                         {n.title}
                                     </h3>
-                                    <div className="relative w-full h-[350px] mb-4">
+                                    {/* Image height responsive kora hoyeche mobile-er jonno */}
+                                    <div className="relative w-full h-[200px] md:h-[300px] lg:h-[350px] mb-4">
                                         <Image 
                                             src={n.image_url} 
                                             alt={n.title} 
@@ -80,7 +90,7 @@ console.log(news);
                                 {/* Footer Section */}
                                 <div className="px-5 py-4 border-t border-gray-100 flex justify-between items-center bg-white">
                                     <div className="flex items-center gap-2">
-                                        <div className="flex text-orange-400 text-lg">
+                                        <div className="flex text-orange-400 text-base lg:text-lg">
                                             {"★".repeat(Math.round(n.rating?.number || 0))}
                                             <span className="text-gray-300">{"★".repeat(5 - Math.round(n.rating?.number || 0))}</span>
                                         </div>
@@ -96,8 +106,10 @@ console.log(news);
                     </div>
                 </div>
 
-                {/* Right Sidebar */}
-                <div className="col-span-3">
+                {/* Right Sidebar: 
+                    Mobile-e order-3 (Sobar niche thakbe)
+                    Desktop-e col-span-3 thakbe */}
+                <div className="col-span-1 lg:col-span-3 order-3 lg:order-3">
                    <RightSidebar></RightSidebar>
                 </div>
 
