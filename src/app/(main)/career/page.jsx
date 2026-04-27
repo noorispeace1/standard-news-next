@@ -5,7 +5,7 @@ export const metadata = {
 const CareerPage = () => {
     return (
         <div>
-            Career
+          
         </div>
     );
 };

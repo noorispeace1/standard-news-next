@@ -1,19 +1,36 @@
 'use client';
+import { authClient } from '@/lib/auth-client'; // ১. authClient ইম্পোর্ট করা হয়েছে
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
-    const{ register,handleSubmit} = useForm()
-    const handleLoginFunc = (data) => {
-console.log(data);
-    };  
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const handleLoginFunc = async (data) => {
+        const { data: res, error } = await authClient.signIn.email({
+            email: data.email,
+            password: data.password,
+            rememberMe: true,
+            callbackURL: "/",
+        });
+
+        if (error) {
+          
+            alert("Login failed: " + error.message);
+        } else {
+          
+            alert("Logged in successfully!");
+            console.log(res);
+        }
+    }; 
+    const [isShowPassword, setIsShowPassword] = useState(false);
+
     return (
-        /* min-h-screen ensures it takes the full height of the browser to center vertically */
         <div className='min-h-screen flex justify-center items-center bg-slate-100 p-4'>
-            
-            {/* Added shadow, max-width, and more padding for a "card" look */}
-            <div className='p-8 rounded-4xl bg-red shadow-xl w-full max-w-md'>
+          
+            <div className='p-8 rounded-2xl bg-white shadow-xl w-full max-w-md'>
                 <h2 className='text-3xl font-bold text-center mb-8 text-slate-800'>
                     Login Your account
                 </h2>
@@ -24,32 +41,35 @@ console.log(data);
                         <label className="text-sm font-semibold text-slate-600 ml-1">Email</label>
                         <input 
                             type="email" 
-                            
                             className="input input-bordered w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-slate-800" 
                             placeholder="Type Your email" 
-                            {...register("email")}
+                            {...register("email", { required: "Email is required" })}
                         />
+                        {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
                     </div>
                 
                     {/* Password Input */}
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 relative">
                         <label className="text-sm font-semibold text-slate-600 ml-1">Password</label>
                         <input 
-                            type="password" 
-                       
+                            type={isShowPassword ? "text" : "password"}
                             className="input input-bordered w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-slate-800" 
                             placeholder="Type Your password" 
-                            {...register("password")}
+                            {...register("password", { required: "Password is required" })}
                         />
+                    <span className='absolute right-2 top-10 cursor-pointer' onClick={()=> setIsShowPassword(!isShowPassword)}>
+                       {isShowPassword ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                        {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                     </div>
 
                     {/* Login Button */}
-                    <button className='btn w-full bg-black hover:bg-slate-900 text-white py-3 rounded-lg font-bold transition-all mt-4'>
+                    <button type="submit" className='btn w-full bg-black hover:bg-slate-900 text-white py-3 rounded-lg font-bold transition-all mt-4'>
                         Login
                     </button>
                     
-                    <p className="text-center mt-4 text-sm text-slate-500 mt-2">
-                        Dont have an account? <Link href="/register" className="text-red font-bold text-blue-500 hover:underline">Register</Link>
+                    <p className="text-center mt-4 text-sm text-slate-500">
+                        Dont have an account? <Link href="/register" className="font-bold text-blue-500 hover:underline">Register</Link>
                     </p>
                 </form>
             </div>
@@ -57,4 +77,4 @@ console.log(data);
     );
 };
 
-export default LoginPage ;
+export default LoginPage;

@@ -12,8 +12,8 @@ const AboutUsPage = async () => {
 
     return (
         <div className="bg-[#F9FAFB] min-h-screen py-12">
-            <div className="w-11/12  mx-auto px-4 lg:px-8">
-                <div className="grid grid-cols-12 gap-10">
+            {/* <div className="mx-auto px-4 lg:px-8"> */}
+                <div className="grid   grid-cols-12 gap-20">
                     
                     {/* Left Sidebar (3 Columns) */}
                     <aside className="col-span-3 ">
@@ -26,7 +26,7 @@ const AboutUsPage = async () => {
                     </aside>
 
                     {/* About Us Content (9 Columns) */}
-                    <main className="col-span-6">
+                    <main className="col-span-6 ">
                         <div className="bg-white rounded-[3rem] border border-gray-100 p-6 md:p-16 shadow-2xl shadow-gray-200/50">
                             
                             {/* --- Section 1: Hero --- */}
@@ -92,7 +92,7 @@ const AboutUsPage = async () => {
                             </div>
 
                             {/* --- Section 4: Editorial Content --- */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                            <div className="grid grid-cols-3 md:grid-cols-2 gap-10 items-center">
                                 <div className="prose prose-lg">
                                     <h2 className="text-4xl font-black text-gray-900 mb-8 leading-tight">Journalism for the <br/> Digital Age.</h2>
                                     <p className="text-gray-600 mb-6 font-medium">
@@ -133,7 +133,7 @@ const AboutUsPage = async () => {
 
                         </div>
                     </main>
-                     <div className=" col-span-3 relative overflow-hidden mr-20 p-8 bg-gray-900 rounded-[2rem]  justify-end text-white shadow-2xl">
+                     <div className="col-span-2  h-92 relative overflow-hidden  p-8 bg-gray-900 rounded-[2rem]  justify-end text-white shadow-2xl">
                                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-50"></div>
                                 <h4 className="relative z-10 font-black text-2xl mb-4 leading-tight">Be Part of the <span className="text-red-500">Truth.</span></h4>
                                 <p className="relative z-10 text-sm text-gray-400 mb-6 font-medium">Join 50k+ readers who get exclusive investigative reports.</p>
@@ -142,7 +142,7 @@ const AboutUsPage = async () => {
                                 </button>
                             </div>
                 </div>
-            </div>
+            {/* </div> */}
         </div>
     );
 };

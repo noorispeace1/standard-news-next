@@ -31,7 +31,7 @@ console.log(news);
                 {/* Middle Content: News Feed */}
                 <div className="col-span-6">
                     <h2 className="font-bold text-2xl text-gray-800 mb-6 border-l-4 border-primary pl-3">
-                        Dragon News Home
+                      Standard News Home
                     </h2>
                     
                     <div className="flex flex-col gap-6">

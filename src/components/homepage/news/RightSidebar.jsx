@@ -1,26 +1,61 @@
+"use client"
 import Image from 'next/image';
 import React from 'react';
-import { FaFacebook, FaGithub, FaGoogle, FaGooglePlusG, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { FaSquareGithub } from 'react-icons/fa6';
+import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-icons/fa';
+import playgroundimage from "../../../assets/playground.png"
+
+import { authClient } from '@/lib/auth-client'; 
 
 const RightSidebar = () => {
+
+   
+    const handleGoogleSignin = async () => {
+        try {
+            await authClient.signIn.social({
+                provider: "google",
+                callbackURL: "/",
+            });
+        } catch (error) {
+            console.error("Google Sign-in Error:", error);
+        }
+    };
+
+   
+    const handleGithubSignin = async () => {
+        try {
+            await authClient.signIn.social({
+                provider: "github",
+                callbackURL: "/",
+            });
+            
+        } catch (error) {
+            console.error("Github Sign-in Error:", error);
+        }
+    };
+
     return (
-     <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8">
             
             {/* --- Login Section --- */}
             <section>
                 <h2 className="font-black text-lg mb-4 text-gray-800 uppercase tracking-tight">Login With</h2>
                 <div className="flex flex-col gap-2">
-                    <button className="btn btn-outline border-blue-400 text-blue-500 hover:bg-blue-50 hover:border-blue-500 w-full flex items-center gap-2 capitalize font-bold">
+                    <button 
+                        className="btn btn-outline border-blue-400 text-blue-500 hover:bg-blue-50 hover:border-blue-500 w-full flex items-center gap-2 capitalize font-bold" 
+                        onClick={handleGoogleSignin}
+                    >
                         <FaGoogle className="text-lg" /> Login with Google
                     </button>
-                    <button className="btn btn-outline border-gray-700 text-gray-800 hover:bg-gray-100 w-full flex items-center gap-2 capitalize font-bold">
+                    <button 
+                        className="btn btn-outline border-gray-700 text-gray-800 hover:bg-gray-100 w-full flex items-center gap-2 capitalize font-bold"
+                        onClick={handleGithubSignin}
+                    >
                         <FaGithub className="text-lg" /> Login with Github
                     </button>
                 </div>
             </section>
 
-            {/* --- Find Us Section (Standard Editorial Look) --- */}
+            {/* --- Find Us Section --- */}
             <section>
                 <h2 className="font-black text-lg mb-4 text-gray-800 uppercase tracking-tight">Find Us On</h2>
                 <div className="flex flex-col border border-gray-200 rounded-lg overflow-hidden">
@@ -44,7 +79,7 @@ const RightSidebar = () => {
                 <h2 className="font-black text-lg mb-4 text-gray-800 uppercase tracking-tight">Q-Zone</h2>
                 <div className="flex flex-col gap-4">
                     <div className="relative w-full h-40">
-                        <Image src="https://i.ibb.co/qY70fT5/qZone1.png" fill alt="qzone" className="object-contain" />
+                        <Image src={playgroundimage} fill alt="qzone" className="object-contain" />
                     </div>
                     <div className="relative w-full h-40">
                         <Image src="https://i.ibb.co/m9Xv6P5/qZone2.png" fill alt="qzone" className="object-contain" />
@@ -52,7 +87,7 @@ const RightSidebar = () => {
                 </div>
             </section>
 
-            {/* --- Promotional Banner (Advanced) --- */}
+            {/* --- Promotional Banner --- */}
             <section className="relative bg-[#050505] rounded-xl overflow-hidden text-center py-16 px-6 shadow-2xl">
                 <div className="absolute inset-0 opacity-40 bg-gradient-to-b from-red-600 to-transparent"></div>
                 <div className="relative z-10">
